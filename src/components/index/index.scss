@@ -1,0 +1,663 @@
+.vscode-framework {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 自定义 tooltip 样式 */
+.custom-tooltip {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* 顶部导航栏的 tooltip */
+.custom-tooltip.top {
+  transform: translateX(-50%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
+  }
+}
+
+/* 左侧导航栏的 tooltip */
+.custom-tooltip.sidebar {
+  transform: translateY(-50%);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+    border-width: 4px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
+  }
+}
+
+/* 顶部导航栏 */
+.vscode-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 34px;
+  padding: 0 12px;
+  background-color: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.3s, border-color 0.3s;
+  -webkit-app-region: drag;
+  user-select: none;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+
+    .vscode-icon {
+      margin-right: 30px;
+      cursor: pointer;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 30px;
+
+      .nav-item {
+        position: relative;
+        display: inline-block;
+
+        .nav-btn {
+          padding: 4px 10px;
+          background: none;
+          border: none;
+          color: var(--text-primary);
+          font-size: 14px;
+          cursor: pointer;
+          border-radius: 4px;
+          transition: color 0.3s;
+
+          &:hover {
+            background-color: var(--bg-secondary);
+          }
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background-color: var(--bg-secondary);
+          border: 1px solid var(--border-color);
+          border-radius: 4px;
+          padding: 4px 0;
+          min-width: 160px;
+          z-index: 1000;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+          transition: background-color 0.3s, border-color 0.3s;
+
+          .dropdown-item {
+            padding: 6px 16px;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-size: 13px;
+            transition: color 0.3s;
+            position: relative;
+
+            &:hover {
+              background-color: var(--accent-color);
+              color: #fff;
+            }
+
+            &.has-submenu {
+              &:hover .recent-projects-submenu {
+                display: block;
+              }
+            }
+          }
+
+          .recent-projects-submenu {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 4px 0;
+            min-width: 280px;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, border-color 0.3s;
+          }
+
+          .recent-project-subitem {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+              background: var(--bg-tertiary);
+            }
+          }
+
+          .recent-project-icon {
+            font-size: 24px;
+          }
+
+          .recent-project-info {
+            flex: 1;
+            overflow: hidden;
+          }
+
+          .recent-project-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-accent);
+            margin-bottom: 4px;
+            transition: color 0.3s;
+          }
+
+          .recent-project-path {
+            font-size: 11px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.3s;
+          }
+
+          .empty-recent-projects {
+            padding: 16px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+            transition: color 0.3s;
+          }
+        }
+      }
+
+      .nav-btn {
+        padding: 4px 10px;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: color 0.3s;
+
+        &:hover {
+          background-color: var(--bg-secondary);
+        }
+      }
+    }
+  }
+
+  .header-center {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 24px;
+
+    .search-box {
+      position: relative;
+
+      .search-input::placeholder{
+        text-align: center;
+      }
+
+      .search-input {
+        text-align: left;
+        width: 100%;
+        height: 28px;
+        padding: 0 30px 0 10px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 10px;
+        color: var(--text-primary);
+        font-size: 15px;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-color: var(--accent-color);
+        }
+      }
+
+      .header-search-clear {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.6;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .header-search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        margin-top: 4px;
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s, border-color 0.3s;
+
+        /* 自定义滚动条 */
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: var(--bg-secondary);
+          border-radius: 0 6px 6px 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: var(--bg-tertiary);
+          border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: #4e4e4e;
+        }
+
+        .header-search-result-item {
+          display: flex;
+          align-items: center;
+          padding: 8px 12px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+
+          &:hover,
+          &.active {
+            background-color: var(--accent-color);
+          }
+
+          &:hover .result-file-name,
+          &:hover .result-file-path,
+          &.active .result-file-name,
+          &.active .result-file-path {
+            color: #ffffff;
+          }
+
+          .result-file-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            flex-shrink: 0;
+          }
+
+          .result-file-name {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            flex-shrink: 0;
+            transition: color 0.2s;
+          }
+
+          .result-file-path {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-left: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+            transition: color 0.2s;
+          }
+        }
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+
+    .header-btn {
+      width: 28px;
+      height: 28px;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s;
+      -webkit-app-region: no-drag;
+
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+    }
+  }
+
+  .window-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    height: 100%;
+    -webkit-app-region: no-drag;
+
+    .window-btn {
+      width: 46px;
+      height: 100%;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: var(--bg-secondary);
+      }
+
+      &.close-btn:hover {
+        background-color: #e81123;
+        color: white;
+      }
+
+      svg {
+        pointer-events: none;
+      }
+    }
+  }
+
+  .header-left,
+  .header-nav,
+  .nav-btn,
+  .search-box,
+  .header-center {
+    -webkit-app-region: no-drag;
+  }
+}
+
+/* 主内容区 */
+.vscode-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 文件树和内容区容器 */
+.vscode-right-panel {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 内容区和终端容器 */
+.vscode-content-terminal-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* 右侧内容区 */
+.vscode-content {
+  flex: 1;
+  padding: 0;
+  overflow: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 终端调整大小手柄 - 仅在终端可见时显示 */
+.terminal-resizer {
+  height: 5px;
+  background-color: var(--bg-tertiary);
+  cursor: ns-resize;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  display: none;
+  transition: background-color 0.3s;
+  
+  &.visible {
+    display: block;
+  }
+  
+  &:hover {
+    background-color: var(--accent-color);
+  }
+}
+
+  /* 左侧导航栏 */
+  .vscode-sidebar {
+    width: 40px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    transition: background-color 0.3s, border-color 0.3s;
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      padding: 12px 0;
+      gap: 12px;
+
+      .sidebar-btn {
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        color: var(--text-primary);
+        cursor: pointer;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        transition: color 0.3s;
+
+        &:hover {
+          background-color: var(--bg-tertiary);
+        }
+      }
+    }
+  }
+
+  /* 文件树 */
+  .vscode-filetree {
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+    position: relative;
+    transition: background-color 0.3s, border-color 0.3s;
+    
+    /* 文件树大小调整手柄 */
+    .filetree-resizer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 100%;
+      cursor: ew-resize;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: var(--accent-color);
+      }
+    }
+  }
+
+  /* 右侧内容区 */
+  .vscode-content {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+
+    .content-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--text-secondary);
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .file-editor {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .file-editor-header {
+        padding: 10px 20px;
+        background-color: var(--bg-secondary);
+        border-bottom: 1px solid var(--border-color);
+        font-weight: 500;
+        transition: background-color 0.3s, border-color 0.3s;
+      }
+
+      .file-editor-content {
+        flex: 1;
+        padding: 0;
+        overflow: hidden;
+        background-color: var(--bg-primary);
+        transition: background-color 0.3s;
+
+        .monaco-editor-container {
+          width: 100%;
+          height: 100%;
+        }
+
+        pre {
+          margin: 0;
+          font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+          font-size: 13px;
+          line-height: 1.5;
+          color: var(--text-primary);
+          white-space: pre-wrap;
+          word-wrap: break-word;
+          transition: color 0.3s;
+        }
+
+        code {
+          font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+      }
+    }
+  }
+
+
+/* 搜索面板 */
+.vscode-search {
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s, border-color 0.3s;
+  
+  /* 搜索面板大小调整手柄 */
+  .search-resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    cursor: ew-resize;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: background-color 0.3s;
+    
+    &:hover {
+      background-color: var(--accent-color);
+    }
+  }
+}
+
+/* 插件市场面板 */
+.vscode-extensions {
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .vscode-header {
+    padding: 0 8px;
+
+    .header-center {
+      margin: 0 12px;
+      max-width: 180px;
+    }
+
+    .header-nav {
+      gap: 8px;
+
+      .nav-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+      }
+    }
+  }
+
+  .vscode-sidebar {
+    width: 48px;
+
+    .sidebar-nav {
+      gap: 8px;
+
+      .sidebar-btn {
+        width: 36px;
+        height: 36px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}
