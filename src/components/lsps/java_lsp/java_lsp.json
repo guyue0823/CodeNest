@@ -1,0 +1,159 @@
+{
+  "keywords": [
+    "abstract", "assert", "boolean", "break", "byte", "case", "catch", "char", "class",
+    "const", "continue", "default", "do", "double", "else", "enum", "extends", "final",
+    "finally", "float", "for", "goto", "if", "implements", "import", "instanceof", "int",
+    "interface", "long", "native", "new", "package", "private", "protected", "public",
+    "return", "short", "static", "strictfp", "super", "switch", "synchronized", "this",
+    "throw", "throws", "transient", "try", "void", "volatile", "while", "true", "false", "null"
+  ],
+  "classes": [
+    {
+      "name": "System",
+      "methods": [
+        { "name": "out.println", "signature": "void println(Object x)", "description": "打印对象并换行" },
+        { "name": "out.print", "signature": "void print(Object x)", "description": "打印对象" },
+        { "name": "out.printf", "signature": "void printf(String format, Object... args)", "description": "格式化打印" }
+      ]
+    },
+    {
+      "name": "Integer",
+      "methods": [
+        { "name": "parseInt", "signature": "int parseInt(String s)", "description": "字符串转整数" }
+      ]
+    },
+    {
+      "name": "Double",
+      "methods": [
+        { "name": "parseDouble", "signature": "double parseDouble(String s)", "description": "字符串转双精度浮点数" }
+      ]
+    },
+    {
+      "name": "Long",
+      "methods": [
+        { "name": "parseLong", "signature": "long parseLong(String s)", "description": "字符串转长整数" }
+      ]
+    },
+    {
+      "name": "String",
+      "methods": [
+        { "name": "length", "signature": "int length()", "description": "字符串长度" },
+        { "name": "charAt", "signature": "char charAt(int index)", "description": "获取字符" },
+        { "name": "substring", "signature": "String substring(int beginIndex)", "description": "子字符串" },
+        { "name": "indexOf", "signature": "int indexOf(int ch)", "description": "查找字符" },
+        { "name": "equals", "signature": "boolean equals(Object anObject)", "description": "字符串比较" },
+        { "name": "toUpperCase", "signature": "String toUpperCase()", "description": "转大写" },
+        { "name": "toLowerCase", "signature": "String toLowerCase()", "description": "转小写" },
+        { "name": "valueOf", "signature": "String valueOf(Object obj)", "description": "对象转字符串" }
+      ]
+    },
+    {
+      "name": "Arrays",
+      "methods": [
+        { "name": "toString", "signature": "String toString(Object[] a)", "description": "数组转字符串" },
+        { "name": "sort", "signature": "void sort(Object[] a)", "description": "排序数组" },
+        { "name": "asList", "signature": "List<T> asList(T... a)", "description": "数组转列表" }
+      ]
+    },
+    {
+      "name": "Collections",
+      "methods": [
+        { "name": "sort", "signature": "void sort(List<T> list)", "description": "排序列表" },
+        { "name": "reverse", "signature": "void reverse(List<?> list)", "description": "反转列表" }
+      ]
+    },
+    {
+      "name": "Math",
+      "methods": [
+        { "name": "abs", "signature": "int abs(int a)", "description": "绝对值" },
+        { "name": "max", "signature": "int max(int a, int b)", "description": "最大值" },
+        { "name": "min", "signature": "int min(int a, int b)", "description": "最小值" },
+        { "name": "sqrt", "signature": "double sqrt(double a)", "description": "平方根" },
+        { "name": "pow", "signature": "double pow(double a, double b)", "description": "幂运算" },
+        { "name": "sin", "signature": "double sin(double a)", "description": "正弦函数" },
+        { "name": "cos", "signature": "double cos(double a)", "description": "余弦函数" },
+        { "name": "random", "signature": "double random()", "description": "随机数生成" }
+      ]
+    },
+    {
+      "name": "ArrayList",
+      "methods": [
+        { "name": "add", "signature": "boolean add(E e)", "description": "添加元素" },
+        { "name": "get", "signature": "E get(int index)", "description": "获取元素" },
+        { "name": "size", "signature": "int size()", "description": "获取大小" },
+        { "name": "remove", "signature": "E remove(int index)", "description": "删除元素" },
+        { "name": "isEmpty", "signature": "boolean isEmpty()", "description": "是否为空" },
+        { "name": "clear", "signature": "void clear()", "description": "清空列表" },
+        { "name": "contains", "signature": "boolean contains(Object o)", "description": "是否包含元素" },
+        { "name": "indexOf", "signature": "int indexOf(Object o)", "description": "查找元素位置" },
+        { "name": "set", "signature": "E set(int index, E element)", "description": "替换元素" },
+        { "name": "toArray", "signature": "Object[] toArray()", "description": "转数组" }
+      ]
+    },
+    {
+      "name": "HashMap",
+      "methods": [
+        { "name": "put", "signature": "V put(K key, V value)", "description": "添加键值对" },
+        { "name": "get", "signature": "V get(Object key)", "description": "获取值" },
+        { "name": "remove", "signature": "V remove(Object key)", "description": "删除键值对" },
+        { "name": "size", "signature": "int size()", "description": "获取大小" },
+        { "name": "isEmpty", "signature": "boolean isEmpty()", "description": "是否为空" },
+        { "name": "clear", "signature": "void clear()", "description": "清空" },
+        { "name": "containsKey", "signature": "boolean containsKey(Object key)", "description": "是否包含键" },
+        { "name": "containsValue", "signature": "boolean containsValue(Object value)", "description": "是否包含值" },
+        { "name": "keySet", "signature": "Set<K> keySet()", "description": "获取所有键" },
+        { "name": "values", "signature": "Collection<V> values()", "description": "获取所有值" }
+      ]
+    },
+    {
+      "name": "Optional",
+      "methods": [
+        { "name": "of", "signature": "Optional<T> of(T value)", "description": "创建Optional" },
+        { "name": "orElse", "signature": "T orElse(T other)", "description": "如果存在则返回否则返回默认值" },
+        { "name": "isPresent", "signature": "boolean isPresent()", "description": "检查是否有值" },
+        { "name": "get", "signature": "T get()", "description": "获取值" },
+        { "name": "orElseGet", "signature": "T orElseGet(Supplier<? extends T> other)", "description": "获取值或从提供器获取" },
+        { "name": "map", "signature": "<U> Optional<U> map(Function<? super T, ? extends U> mapper)", "description": "映射值" }
+      ]
+    },
+    {
+      "name": "List",
+      "methods": [
+        { "name": "add", "signature": "boolean add(E e)", "description": "添加元素" },
+        { "name": "get", "signature": "E get(int index)", "description": "获取元素" },
+        { "name": "size", "signature": "int size()", "description": "获取大小" },
+        { "name": "remove", "signature": "E remove(int index)", "description": "删除元素" }
+      ]
+    },
+    {
+      "name": "Set",
+      "methods": [
+        { "name": "add", "signature": "boolean add(E e)", "description": "添加元素" },
+        { "name": "size", "signature": "int size()", "description": "获取大小" },
+        { "name": "remove", "signature": "boolean remove(Object o)", "description": "删除元素" },
+        { "name": "isEmpty", "signature": "boolean isEmpty()", "description": "是否为空" }
+      ]
+    },
+    {
+      "name": "Map",
+      "methods": [
+        { "name": "put", "signature": "V put(K key, V value)", "description": "添加键值对" },
+        { "name": "get", "signature": "V get(Object key)", "description": "获取值" },
+        { "name": "size", "signature": "int size()", "description": "获取大小" },
+        { "name": "remove", "signature": "V remove(Object key)", "description": "删除键值对" }
+      ]
+    }
+  ],
+  "standardLibraries": [
+    "java.lang", "java.util", "java.io", "java.net", "java.nio", "java.math",
+    "java.time", "java.text", "java.util.concurrent", "java.util.stream",
+    "java.util.function", "java.lang.reflect", "java.lang.annotation",
+    "java.sql", "javax.sql", "javax.swing", "java.awt", "java.applet"
+  ],
+  "thirdPartyLibraries": [
+    "org.springframework", "org.springframework.boot", "org.springframework.web",
+    "org.hibernate", "javax.persistence", "com.fasterxml.jackson", "com.google.gson",
+    "org.apache.commons", "org.apache.logging", "org.slf4j", "ch.qos.logback",
+    "org.junit", "org.testng", "org.mockito", "org.easymock", "org.powermock"
+  ]
+}
