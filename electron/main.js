@@ -1,31 +1,3 @@
-const { app, BrowserWindow } = require('electron')
-const path = require('path')
-
-function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 800,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
-    }
-  })
-
-  mainWindow.loadFile('dist/index.html')
-  
-  // 开发环境下打开开发者工具
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.webContents.openDevTools()
-  }
-}
-
-app.whenReady().then(() => {
-  createWindow()
-
-  app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
-  })
-})
-
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
+version https://git-lfs.github.com/spec/v1
+oid sha256:bca53fd8e5be76d214ec98a571be069bcb38cbee50082fd633f6b6cb298eaf57
+size 730
